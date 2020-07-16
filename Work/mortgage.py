@@ -22,6 +22,11 @@ while mortgage > 0:
         mortgage = mortgage - 1000.00
         paid = paid + 1000.00
 
+    # fixing the overpayment that occurs in the last month:
+    if mortgage < monthly_payment:
+        paid += mortgage
+        mortgage = mortgage - mortgage
+
     print(months, round(paid, 2), round(mortgage, 2))
 
 print(round(paid, 2), months)
