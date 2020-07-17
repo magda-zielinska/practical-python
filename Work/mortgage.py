@@ -27,7 +27,7 @@ while mortgage > 0:
         paid += mortgage
         mortgage = mortgage - mortgage
 
-    print(months, round(paid, 2), round(mortgage, 2))
+    print(f'{months} month paid: {paid:0.2f}, left to pay: {mortgage:0.2f}')
 
-print(round(paid, 2), months)
+print(f'Paid total: {paid:0.2f} in {months} months')
 
