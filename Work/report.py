@@ -63,6 +63,12 @@ print('Gain', total_new_value - total_value)
 
 
 def make_report(portfolio, prices):
+    """
+    Compute the new change in the price of the stock
+    :param portfolio: list of dictionaries
+    :param prices: dictionary
+    :return: a list of tuples
+    """
     data = []
     for s in portfolio:
         name = s['name']
@@ -72,5 +78,10 @@ def make_report(portfolio, prices):
         holding = (name, shares, price, change)
         data.append(holding)
     return data
+
+report = make_report(portfolio, prices)
+
+for name, shares, price, change in report:
+    print(f'{name:>10s} {shares:>10d} {price:>10.2f} {change:>10.2f}')
 
 
