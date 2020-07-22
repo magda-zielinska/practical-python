@@ -46,9 +46,6 @@ def read_prices(filename):
 portfolio = read_portfolio('Data/portfolio.csv')
 prices = read_prices('Data/prices.csv')
 
-print(portfolio)
-print(prices)
-
 # Compute the total value of the stock from the portfolio file
 total_value = 0.0
 for s in portfolio:
@@ -63,3 +60,17 @@ for s in portfolio:
 
 print('Current value', total_new_value)
 print('Gain', total_new_value - total_value)
+
+
+def make_report(portfolio, prices):
+    data = []
+    for s in portfolio:
+        name = s['name']
+        shares = s['shares']
+        price = prices[s['name']]
+        change = price - s['price']
+        holding = (name, shares, price, change)
+        data.append(holding)
+    return data
+
+
