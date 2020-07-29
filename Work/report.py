@@ -12,6 +12,15 @@ def read_portfolio(filename):
     :param filename: filepath
     :return: a list of dictionaries
     """
+    # using dictionary comprehensions:
+    # f = open('Data/portfoliodate.csv')
+    # rows = csv.reader(f)
+    # headers = next(rows)
+    # selected = ['name', 'shares', 'price']
+    # indices = [headers.index(colname) for colname in selected]
+    # portfolio = [ {colname: row[index] for colname, index in zip(selected, indices)} for row in rows]
+
+
     portfolio = []
 
     with open(filename, 'rt') as f:
