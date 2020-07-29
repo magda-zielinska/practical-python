@@ -13,23 +13,24 @@ def read_portfolio(filename):
     :return: a list of dictionaries
     """
     # using dictionary comprehensions:
-    # f = open('Data/portfoliodate.csv')
-    # rows = csv.reader(f)
-    # headers = next(rows)
-    # selected = ['name', 'shares', 'price']
-    # indices = [headers.index(colname) for colname in selected]
-    # portfolio = [ {colname: row[index] for colname, index in zip(selected, indices)} for row in rows]
+    f = open('Data/portfoliodate.csv')
+    rows = csv.reader(f)
+    headers = next(rows)
+    selected = ['name', 'shares', 'price']
+    types = [str, int, float]
+    indices = [headers.index(colname) for colname in selected]
+    portfolio = [ {colname: type(row[index]) for colname, type, index in zip(selected, types, indices)} for row in rows]
 
 
-    portfolio = []
-
-    with open(filename, 'rt') as f:
-        rows = csv.reader(f)
-        headers = next(rows)
-        for row in rows:
-            # holding = {'name': row[0], 'shares': int(row[1]), 'price': float(row[2])}
-            holding = dict(zip(headers, row))
-            portfolio.append(holding)
+    # portfolio = []
+    #
+    # with open(filename, 'rt') as f:
+    #     rows = csv.reader(f)
+    #     headers = next(rows)
+    #     for row in rows:
+    #         # holding = {'name': row[0], 'shares': int(row[1]), 'price': float(row[2])}
+    #         holding = dict(zip(headers, row))
+    #         portfolio.append(holding)
     return portfolio
 
 
