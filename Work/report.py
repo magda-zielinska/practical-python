@@ -19,7 +19,8 @@ def read_portfolio(filename):
     # headers = next(rows)
     select = ['name', 'shares', 'price']
     types = [str, int, float]
-    portfolio = fileparse.parse_csv(filename, select=select, types=types)
+    with open(filename) as lines:
+        portfolio = fileparse.parse_csv(lines, select=select, types=types)
     # indices = [headers.index(colname) for colname in selected]
     # portfolio = [ {colname: type(row[index]) for colname, type, index in zip(selected, types, indices)} for row in rows]
 
@@ -43,7 +44,9 @@ def read_prices(filename):
     :param filename: path to file
     :return: a dictionary
     """
-    prices = dict(fileparse.parse_csv(filename, types=[str, float], has_headers=False))
+    with open(filename) as lines:
+
+        prices = dict(fileparse.parse_csv(lines, types=[str, float], has_headers=False))
 
     # with open(filename, 'rt') as f:
     #     rows = csv.reader(f)
