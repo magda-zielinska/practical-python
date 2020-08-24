@@ -3,7 +3,7 @@
 # Exercise 2.4
 
 import csv
-from Work import fileparse
+import fileparse
 
 
 def read_portfolio(filename):
@@ -92,16 +92,32 @@ def make_report(portfolio, prices):
         data.append(holding)
     return data
 
-report = make_report(portfolio, prices)
+def print_report(data):
+    headers = ('Name', 'Shares', 'Price', 'Change')
 
-headers = ('Name', 'Shares', 'Price', 'Change')
+    print('%10s %10s %10s %10s' % headers)
+    print((10 * '-' + ' ') * len(headers))
+    for name, shares, price, change in data:
+        print(f'{name:>10s} {shares:>10d} {price:>9.2f} {change:>10.2f}')
 
-print('%10s %10s %10s %10s' % headers)
-print((10 * '-' + ' ') * len(headers))
-for name, shares, price, change in report:
-    print(f'{name:>10s} {shares:>10d} {price:>9.2f} {change:>10.2f}')
+
+def cli_report(fileportfolio, fileprices):
+    portfolio = read_portfolio(fileportfolio)
+    prices = read_prices(fileprices)
+    report = make_report(portfolio, prices)
+    print_report(report)
+
 
 #for row in report:
 #     print('%10s %10d' '$''%10.2f %10.2f' % row)
 
+def main(args):
+    fileportfolio = str(read_portfolio(args[1]))
+    fileprices = str(read_prices(args[2]))
+    cli_report(fileportfolio, fileprices)
+
+
+if __name__ == '__main':
+    import sys
+    main(sys.argv)
 
