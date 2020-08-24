@@ -2,14 +2,9 @@
 #
 # Exercise 1.27
 import csv
-import sys
-from Work import report
+import report
 
-def portfolio_cost():
-    if len(sys.argv) == 2:
-        filename = sys.argv[1]
-    else:
-        filename = 'Data/portfolio.csv'
+def portfolio_cost(filename):
 
         rows = report.read_portfolio(filename)
         total_cost = 0.00
@@ -38,8 +33,16 @@ def missing_portfolio():
     return missing_cost
 
 
-cost = portfolio_cost()
-print(f'Total cost: ', cost)
 
 missing = missing_portfolio()
 print('Total cost in the missing file: ', missing)
+
+
+def main(args):
+    filename = args[1]
+    print('Total cost: ', portfolio_cost(filename))
+
+
+if __name__ == '__main__':
+    import sys
+    main(sys.argv)
