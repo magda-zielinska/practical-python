@@ -5,11 +5,11 @@
 import csv
 
 
-def parse_csv(filename, select=None, types=None, has_headers=False, delimiter=",", silence_errors=False):
+def parse_csv(filename, select=None, types=None, has_headers=True, delimiter=",", silence_errors=False):
     '''
     Parse a CSV file into a list of records
     '''
-    if select is not None and has_headers is False:
+    if select and has_headers is False:
         raise RuntimeError('select argument requires column headers')
     with open(filename) as f:
         rows = csv.reader(f, delimiter=delimiter)
