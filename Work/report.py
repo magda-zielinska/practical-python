@@ -43,16 +43,16 @@ def read_prices(filename):
     :param filename: path to file
     :return: a dictionary
     """
-    prices = {}
+    prices = dict(fileparse.parse_csv(filename, types=[str, float], has_headers=False))
 
-    with open(filename, 'rt') as f:
-        rows = csv.reader(f)
-        for row in rows:
-            # row = row.split(',')
-            try:
-                prices[row[0]] = float(row[1])
-            except IndexError:
-                pass
+    # with open(filename, 'rt') as f:
+    #     rows = csv.reader(f)
+    #     for row in rows:
+    #         # row = row.split(',')
+    #         try:
+    #             prices[row[0]] = float(row[1])
+    #         except IndexError:
+    #             pass
     return prices
 
 
