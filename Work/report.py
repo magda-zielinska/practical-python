@@ -3,6 +3,7 @@
 # Exercise 2.4
 
 import csv
+from Work import fileparse
 
 
 def read_portfolio(filename):
@@ -13,13 +14,14 @@ def read_portfolio(filename):
     :return: a list of dictionaries
     """
     # using dictionary comprehensions:
-    f = open('Data/portfoliodate.csv')
-    rows = csv.reader(f)
-    headers = next(rows)
-    selected = ['name', 'shares', 'price']
+    # f = open('Data/portfoliodate.csv')
+    # rows = csv.reader(f)
+    # headers = next(rows)
+    select = ['name', 'shares', 'price']
     types = [str, int, float]
-    indices = [headers.index(colname) for colname in selected]
-    portfolio = [ {colname: type(row[index]) for colname, type, index in zip(selected, types, indices)} for row in rows]
+    portfolio = fileparse.parse_csv(filename, select=select, types=types)
+    # indices = [headers.index(colname) for colname in selected]
+    # portfolio = [ {colname: type(row[index]) for colname, type, index in zip(selected, types, indices)} for row in rows]
 
 
     # portfolio = []
