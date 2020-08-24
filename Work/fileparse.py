@@ -26,10 +26,14 @@ def parse_csv(filename, select=None, types=None, has_headers=False, delimiter=",
                 continue
 
             if select:
-                    row = [row[index] for index in indices]
+                row = [row[index] for index in indices]
 
-            if types:
-                row = [func(val) for func, val in zip(types,row)]
+            try:
+                if types:
+                    row = [func(val) for func, val in zip(types, row)]
+            except ValueError as e:
+                print('Couldn\'t convert: ', row)
+                print('Reason: ', e)
 
             if headers:
                 record = dict(zip(headers, row))
